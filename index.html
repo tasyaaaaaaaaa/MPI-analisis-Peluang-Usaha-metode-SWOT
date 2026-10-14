@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MPI KIK - Analisis Peluang Usaha dengan SWOT</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#eef4f8;color:#183247}
+button{font:inherit;cursor:pointer;border:0}.hidden{display:none!important}
+.app{min-height:100vh}.screen{min-height:100vh;display:none;padding:24px}.screen.active{display:flex;align-items:center;justify-content:center}
+.wrap{width:min(1100px,100%)}.hero{background:linear-gradient(135deg,#e5f4ff,#eefbf4)}
+.logo{font-size:64px;text-align:center}.eyebrow{text-align:center;font-weight:800;letter-spacing:1px;color:#1769aa}
+h1{font-size:clamp(36px,6vw,64px);text-align:center;margin:10px 0}h2{font-size:34px;margin:0 0 12px}h3{margin:8px 0}
+.center{text-align:center}.muted{color:#657b8d}.card{background:#fff;border-radius:20px;padding:24px;box-shadow:0 10px 28px #17324718;margin:14px 0}
+.primary{background:#1769aa;color:#fff}.green{background:#138a68;color:#fff}.orange{background:#ed9b16;color:#fff}.danger{background:#d94d61;color:#fff}
+.btn{padding:14px 18px;border-radius:13px;font-weight:800;transition:.18s}.btn:hover{transform:translateY(-2px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.menu-card{min-height:150px;font-size:20px}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:14px}.swotbox{padding:22px;border-radius:18px}.S{background:#e2f6ec}.W{background:#fff0db}.O{background:#e5efff}.T{background:#ffe6eb}
+.badge{display:inline-block;padding:6px 10px;border-radius:99px;background:#e9f1f6;font-weight:800;font-size:13px}
+.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.nav .btn{background:#dce8ef;color:#183247}
+.progress{height:10px;background:#d9e4ea;border-radius:99px;overflow:hidden}.bar{height:100%;background:#138a68;width:0;transition:.3s}
+.choicegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.choice{padding:16px;border-radius:14px;background:#edf3f7;font-weight:800}
+.choice:hover{background:#dcebf4}.choice.selected{outline:3px solid #1769aa}
+.feedback{min-height:28px;margin-top:14px;font-weight:800}.ok{color:#138a68}.no{color:#d94d61}
+.case{font-size:18px;line-height:1.7}.result-score{font-size:54px;font-weight:900;text-align:center}
+.drag-area{display:grid;grid-template-columns:1fr 1fr;gap:15px}.statement{padding:18px;background:#f4f7f9;border:2px dashed #b7c8d3;border-radius:16px;margin:10px 0}
+.drop{min-height:110px;border:2px dashed #9eb3c1;border-radius:16px;padding:14px;background:#fafcfd}.drop h3{margin-top:0}
+.drop.hover{background:#e7f4ff}.statement[draggable=true]{cursor:grab}.statement.done{opacity:.45}
+input,textarea{width:100%;padding:12px;border:1px solid #bdcdd7;border-radius:10px;font:inherit}
+.small{font-size:14px}.footer{text-align:center;margin-top:20px;color:#718595}
+@media(max-width:700px){.swot,.drag-area{grid-template-columns:1fr}.choicegrid{grid-template-columns:1fr 1fr}.screen{padding:16px}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="screen1" class="screen active hero"><div class="wrap center">
+<div class="logo">📊</div><div class="eyebrow">PKBM AL MUJAHIDIN PUNDOHA</div>
+<h1>ANALISIS PELUANG USAHA</h1><h2>Menggunakan Metode SWOT</h2>
+<p>Kreativitas, Inovasi, dan Kewirausahaan<br>Setara SMA / Paket C • Kurikulum Merdeka • Fase F</p>
+<button class="btn primary" onclick="show(2)">▶ MULAI BELAJAR</button>
+<p class="footer">MPI interaktif • dapat digunakan secara offline</p></div></section>
+
+<section id="screen2" class="screen"><div class="wrap">
+<h2>🏠 Menu Utama</h2><p class="muted">Pilih aktivitas pembelajaran yang ingin dilakukan.</p>
+<div class="grid">
+<button class="card menu-card" onclick="show(3)">📚<br><b>MATERI</b><br><span class="small">Pelajari konsep SWOT</span></button>
+<button class="card menu-card" onclick="startSimulation()">🎮<br><b>SIMULASI</b><br><span class="small">Analisis usaha</span></button>
+<button class="card menu-card" onclick="startQuiz()">🏆<br><b>KUIS</b><br><span class="small">Uji pemahaman</span></button>
+<button class="card menu-card" onclick="show(18)">👤<br><b>PROFIL</b><br><span class="small">Identitas MPI</span></button>
+</div>
+<div class="card"><b>Tujuan:</b> Peserta didik mampu membedakan faktor internal dan eksternal serta menganalisis peluang usaha menggunakan metode SWOT.</div>
+</div></section>
+
+<section id="screen3" class="screen"><div class="wrap">
+<h2>📚 Materi: Analisis SWOT</h2>
+<div class="card"><h3>Apa itu peluang usaha?</h3><p>Peluang usaha adalah kesempatan yang dapat dimanfaatkan untuk menciptakan nilai atau keuntungan dengan memenuhi kebutuhan masyarakat.</p></div>
+<div class="swot">
+<div class="swotbox S"><span class="badge">INTERNAL</span><h3>🟢 S — Strengths</h3><p><b>Kekuatan</b> yang menjadi keunggulan usaha.</p><p>Contoh: produk berkualitas, keterampilan, harga kompetitif.</p></div>
+<div class="swotbox W"><span class="badge">INTERNAL</span><h3>🟠 W — Weaknesses</h3><p><b>Kelemahan</b> atau keterbatasan dari dalam usaha.</p><p>Contoh: modal terbatas, promosi kurang, alat terbatas.</p></div>
+<div class="swotbox O"><span class="badge">EKSTERNAL</span><h3>🔵 O — Opportunities</h3><p><b>Peluang</b> dari lingkungan luar yang dapat dimanfaatkan.</p><p>Contoh: tren pasar, kebutuhan meningkat, pasar baru.</p></div>
+<div class="swotbox T"><span class="badge">EKSTERNAL</span><h3>🔴 T — Threats</h3><p><b>Ancaman</b> dari luar yang dapat menghambat usaha.</p><p>Contoh: pesaing baru, kenaikan bahan baku, perubahan selera.</p></div>
+</div>
+<div class="card"><h3>💡 Ingat!</h3><p><b>S dan W = faktor internal.</b> <b>O dan T = faktor eksternal.</b></p></div>
+<div class="nav"><button class="btn" onclick="show(2)">← Menu</button><button class="btn primary" onclick="startSimulation()">Mulai Simulasi →</button></div>
+</div></section>
+
+<section id="screen4" class="screen"><div class="wrap">
+<h2>🎮 Simulasi SWOT — Pisang Crispy Pundoha</h2>
+<div class="card case"><b>Skenario:</b> Pisang Crispy Pundoha adalah usaha makanan ringan di sekitar lingkungan tempat tinggal. Rasanya disukai pelanggan dan harganya terjangkau. Modal masih terbatas. Minat masyarakat terhadap makanan ringan meningkat, tetapi mulai muncul beberapa pesaing baru.</div>
+<div class="card"><div class="progress"><div id="simBar" class="bar"></div></div><p><b id="simProgress">Pernyataan 1 dari 4</b></p><div id="simStatement" class="statement"></div>
+<p>Pilih kategori yang paling tepat:</p><div class="choicegrid">
+<button class="choice" onclick="simAnswer('S')">S — Strength</button><button class="choice" onclick="simAnswer('W')">W — Weakness</button><button class="choice" onclick="simAnswer('O')">O — Opportunity</button><button class="choice" onclick="simAnswer('T')">T — Threat</button>
+</div><div id="simFeedback" class="feedback"></div></div>
+<div class="nav"><button class="btn" onclick="show(2)">← Menu</button><button class="btn green" onclick="show(12)">🧠 Berpikir Kritis</button></div>
+</div></section>
+
+<section id="screen12" class="screen"><div class="wrap">
+<h2>🧠 Berpikir Kritis</h2>
+<div class="card case"><b>Kasus:</b> Anda ingin membuka usaha minuman di sekitar PKBM. Minat masyarakat terhadap minuman kekinian cukup tinggi. Anda mampu membuat produk sendiri, tetapi modal terbatas. Di sekitar lokasi sudah ada beberapa pesaing yang menjual dengan harga murah.</div>
+<div class="card"><h3>Analisis sebelum mengambil keputusan</h3>
+<p>Manakah yang paling tepat?</p>
+<div class="grid">
+<button class="choice" onclick="critical('A')">A. Langsung membuka usaha tanpa analisis.</button>
+<button class="choice" onclick="critical('B')">B. Menjalankan usaha dengan strategi berdasarkan hasil SWOT.</button>
+<button class="choice" onclick="critical('C')">C. Membatalkan usaha karena ada pesaing.</button>
+<button class="choice" onclick="critical('D')">D. Mengabaikan kondisi modal.</button>
+</div><div id="criticalFeedback" class="feedback"></div></div>
+<div class="card"><h3>💭 Refleksi</h3><p>Jika Anda ingin memulai usaha di sekitar tempat tinggal, peluang usaha apa yang menurut Anda menarik?</p>
+<textarea id="reflection" rows="4" placeholder="Tuliskan ide usaha dan alasan Anda..."></textarea>
+<button class="btn green" style="margin-top:10px" onclick="saveReflection()">Simpan Refleksi</button><div id="reflectionFeedback" class="feedback"></div>
+</div>
+<div class="nav"><button class="btn" onclick="show(2)">← Menu</button><button class="btn primary" onclick="startQuiz()">Mulai Kuis →</button></div>
+</div></section>
+
+<section id="screen5" class="screen"><div class="wrap">
+<h2>🏆 Kuis Interaktif</h2><div class="card"><div class="progress"><div id="quizBar" class="bar"></div></div>
+<p><b>Soal <span id="quizNo">1</span> dari 3</b> • Skor <span id="quizScore">0</span>/30</p>
+<h3 id="quizQuestion"></h3><div id="quizOptions" class="grid"></div><div id="quizFeedback" class="feedback"></div></div>
+</div></section>
+
+<section id="screen6" class="screen"><div class="wrap">
+<h2>🎯 Cek Cepat</h2><div class="card"><h3>“Modal usaha masih terbatas.”</h3><p>Termasuk kategori apa?</p><div class="choicegrid">
+<button class="choice" onclick="quick('S')">S</button><button class="choice" onclick="quick('W')">W</button><button class="choice" onclick="quick('O')">O</button><button class="choice" onclick="quick('T')">T</button>
+</div><div id="quickFeedback" class="feedback"></div></div><div class="nav"><button class="btn" onclick="show(3)">← Materi</button><button class="btn primary" onclick="startSimulation()">Lanjut →</button></div></div></section>
+
+<section id="screen17" class="screen"><div class="wrap">
+<h2>🏆 Hasil Kuis</h2><div class="card center"><div class="result-score"><span id="finalScore">0</span>/30</div><p>Jawaban benar: <b id="finalCorrect">0</b> dari 3</p><h3 id="predicate"></h3></div>
+<div class="card"><h3>📌 Umpan Balik</h3><p id="resultFeedback"></p><p>Gunakan hasil ini untuk menentukan bagian materi SWOT yang perlu dipelajari kembali.</p></div>
+<div class="nav"><button class="btn orange" onclick="startQuiz()">🔁 Ulangi Kuis</button><button class="btn" onclick="show(2)">🏠 Menu Utama</button></div>
+</div></section>
+
+<section id="screen18" class="screen"><div class="wrap">
+<h2>👤 Profil MPI</h2><div class="card"><h3>PKBM Al Mujahidin Pundoha</h3>
+<p><b>Mata Pelajaran:</b> Kreativitas, Inovasi, dan Kewirausahaan</p><p><b>Jenjang:</b> Setara SMA / Paket C</p><p><b>Fase:</b> F</p><p><b>Kurikulum:</b> Kurikulum Merdeka</p><p><b>Materi:</b> Analisis Peluang Usaha menggunakan Metode SWOT</p></div>
+<button class="btn" onclick="show(2)">← Menu Utama</button></div></section>
+
+</div>
+<script>
+const answers={
+sim:[
+["Rasa produk disukai pelanggan.","S"],
+["Modal usaha masih terbatas.","W"],
+["Minat masyarakat terhadap makanan ringan meningkat.","O"],
+["Mulai muncul beberapa pesaing baru.","T"]
+]};
+let simIndex=0,simScore=0,quizIndex=0,quizScore=0,quizCorrect=0;
+const quizzes=[
+["Produk memiliki kualitas baik dan pelanggan sering melakukan pembelian ulang. Faktor ini termasuk…",["Strength","Weakness","Opportunity","Threat"],0],
+["Harga bahan baku meningkat karena kondisi pasar. Faktor ini termasuk…",["Strength","Weakness","Opportunity","Threat"],3],
+["Usaha makanan memiliki rasa yang disukai, promosi masih rendah, dan tren pemesanan makanan online meningkat. Faktor yang merupakan Opportunity adalah…",["Rasa disukai","Promosi rendah","Tren pemesanan online meningkat","Modal usaha"],2]
+];
+function show(n){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById("screen"+n).classList.add("active");scrollTo(0,0)}
+function startSimulation(){simIndex=0;simScore=0;show(4);renderSim()}
+function renderSim(){document.getElementById("simProgress").textContent=`Pernyataan ${simIndex+1} dari ${answers.sim.length}`;document.getElementById("simStatement").textContent=answers.sim[simIndex][0];document.getElementById("simBar").style.width=(simIndex/4*100)+"%";document.getElementById("simFeedback").textContent=""}
+function simAnswer(a){let right=answers.sim[simIndex][1],f=document.getElementById("simFeedback");if(a===right){simScore++;f.textContent="✅ Benar! Analisis Anda tepat.";f.className="feedback ok"}else{f.textContent="❌ Belum tepat. Perhatikan apakah faktor berasal dari internal atau eksternal.";f.className="feedback no"}setTimeout(()=>{simIndex++;if(simIndex<answers.sim.length)renderSim();else{document.getElementById("simBar").style.width="100%";document.getElementById("simStatement").textContent="🎉 Simulasi selesai!";f.textContent=`Skor simulasi: ${simScore}/4`;f.className="feedback ok"}},650)}
+function quick(a){let f=document.getElementById("quickFeedback");f.textContent=a==="W"?"✅ Benar! Modal terbatas merupakan Weakness (kelemahan) internal.":"❌ Belum tepat. Jawaban yang benar adalah W.";f.className="feedback "+(a==="W"?"ok":"no")}
+function critical(a){let f=document.getElementById("criticalFeedback");f.textContent=a==="B"?"✅ Tepat! Analisis SWOT membantu menyusun strategi sebelum mengambil keputusan usaha.":"❌ Pertimbangkan bahwa keputusan usaha sebaiknya dibuat berdasarkan analisis internal dan eksternal.";f.className="feedback "+(a==="B"?"ok":"no")}
+function saveReflection(){let x=document.getElementById("reflection").value.trim(),f=document.getElementById("reflectionFeedback");f.textContent=x?"✅ Refleksi tersimpan pada sesi belajar ini.":"Silakan tuliskan ide usaha terlebih dahulu.";f.className="feedback "+(x?"ok":"no");if(x)localStorage.setItem("swot_reflection",x)}
+function startQuiz(){quizIndex=0;quizScore=0;quizCorrect=0;show(5);renderQuiz()}
+function renderQuiz(){let q=quizzes[quizIndex];document.getElementById("quizNo").textContent=quizIndex+1;document.getElementById("quizScore").textContent=quizScore;document.getElementById("quizBar").style.width=(quizIndex/3*100)+"%";document.getElementById("quizQuestion").textContent=q[0];let box=document.getElementById("quizOptions");box.innerHTML="";q[1].forEach((o,i)=>{let b=document.createElement("button");b.className="choice";b.textContent=o;b.onclick=()=>answerQuiz(i);box.appendChild(b)});document.getElementById("quizFeedback").textContent=""}
+function answerQuiz(i){let q=quizzes[quizIndex],f=document.getElementById("quizFeedback");document.querySelectorAll("#quizOptions button").forEach(b=>b.disabled=true);if(i===q[2]){quizScore+=10;quizCorrect++;f.textContent="✅ Benar! +10 poin.";f.className="feedback ok"}else{f.textContent=`❌ Belum tepat. Jawaban yang benar: ${q[1][q[2]]}.`;f.className="feedback no"}document.getElementById("quizScore").textContent=quizScore;setTimeout(()=>{quizIndex++;if(quizIndex<3)renderQuiz();else finishQuiz()},900)}
+function finishQuiz(){document.getElementById("finalScore").textContent=quizScore;document.getElementById("finalCorrect").textContent=quizCorrect;document.getElementById("predicate").textContent=quizScore===30?"Predikat: Sangat Baik":quizScore===20?"Predikat: Baik":"Predikat: Perlu Penguatan";document.getElementById("resultFeedback").textContent=quizScore>=20?"Anda sudah memahami konsep utama SWOT. Coba terapkan pada usaha nyata di lingkungan sekitar.":"Pelajari kembali perbedaan faktor internal dan eksternal, lalu coba ulangi kuis.";document.getElementById("quizBar").style.width="100%";show(17)}
+</script>
+</body></html>
